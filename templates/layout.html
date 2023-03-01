@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Achievement Journal - {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div class="top_bar_container">
+            <h1 class="title_item">ACHIEVEMENT JOURNAL</h1>
+            {% if session.username %}
+            <p>Signed in as <a href="/account">{{ session.username }}</a></p>
+            <button><a href="/signout">Sign out</a></button>
+            {% else %}
+            <button><a href="/signin">Sign in</a></button>
+            <button><a href="/signup">Sign up</a></button>
+            {% endif %}
+        </div>
+        <div class="search">
+            <form action="/search" method="POST">
+                <p>Search for a post:<input type="text" name="search"></p>
+                <input class="search_button" type="submit" value="Search">
+            </form>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

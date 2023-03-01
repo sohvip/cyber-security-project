@@ -1,0 +1,13 @@
+<!-- CSRF (fix commented below) -->
+{% extends 'layout.html' %}
+{% block title %}Edit post{% endblock %}
+{% block content %}
+<h1>Edit post</h1>
+<form action="/category/{{ id }}/{{ post_id }}/editpost" method="POST">
+    <p>Title: {{ title }}</p>
+    <p>Content:<textarea name="content" rows="5" cols="40">{{ content }}</textarea></p>
+    <input type="submit" value="Post">
+    <!-- <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}"> -->
+</form>
+<button><a href="/category/{{ id }}">Back</a></button>
+{% endblock %}

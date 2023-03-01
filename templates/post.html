@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block title %}{{ category }}{% endblock %}
+{% block content %}
+<button><a href="/category/{{ id }}">Back</a></button>
+<div class="border_2">
+    <p><b>{{ post[5] }}</b> <i>{{ post[3].strftime('%d.%m.%Y %H:%M:%S') }}</i></p>
+</div>
+<div class="border">
+    <h1>{{ post[1] }}</h1>
+    <p>{{ post[2] }}</p>
+</div>
+{% if likes == None %}
+<p>0 likes</p>
+{% elif likes == 1 %}
+<p>1 like</p>
+{% else %}
+<p>{{ likes }} likes</p>
+{% endif %}
+{% if session.username %}
+<button><a href="/category/{{ id }}/{{ post[0] }}/like">Like</a></button>
+<button><a href="/category/{{ id }}/{{ post[0] }}/comment">Comment</a></button>
+{% endif %}
+{% if user_id == post[4] %}
+<button><a href="/category/{{ id }}/{{ post[0] }}/editpost">Edit</a></button>
+<button><a href="/category/{{ id }}/{{ post[0] }}/deletepost">Delete</a></button>
+{% elif session.role == 1 %}
+<button><a href="/category/{{ id }}/{{ post[0] }}/deletepost">Delete</a></button>
+{% endif %}
+<br>
+{% if comment == None %}
+<p>no comments</p>
+{% else %}
+<div class="border">
+    <p><b>{{ comment[4] }}</b></p>
+    <p>{{ comment[1] }}</p>
+    <p><i>{{ comment[3].strftime('%d.%m.%Y %H:%M:%S') }}</i></p>
+</div>
+<button><a href="/category/{{ id }}/{{ post[0] }}/all_comments">See all comments</a></button>
+{% endif %}
+{% endblock %}

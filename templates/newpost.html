@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %}Create a post{% endblock %}
+{% block content %}
+<h1>Create a post</h1>
+<form action="/category/{{ id }}/newpost" method="POST">
+    <p>Title:</p><input type="text" name="title">
+    <p>Content:</p><textarea name="content" rows="5" cols="40"></textarea>
+    <br>
+    <input type="submit" value="Post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+<button><a href="/category/{{ id }}">Back</a></button>
+{% endblock %}

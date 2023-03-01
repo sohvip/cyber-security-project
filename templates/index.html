@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block title %}Categories{% endblock %}
+{% block content %}
+{% if session.role == 1 %}
+<h2>Create a new category</h2>
+<form action="/" method="post">
+    <p>Name:</p><input type="text" name="category">
+    <input type="submit" value="Create">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+{% endif %}
+<h1 class="categories">CATEGORIES</h1>
+<div class="categories_container">
+    {% for category in categories %}
+    <div class="categories_item">
+        <button class="category_button"><a href="/category/{{ category['id'] }}">{{ category['category'] }}</a></button>
+        {% if session.role == 1 %}
+        <br>
+        <button class="delete_button"><a href="/category/{{ category['id'] }}/delete">Delete</a></button>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

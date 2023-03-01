@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Achievement Journal - Sign Up</title>
+    </head>
+    <body>
+        <h1 class="top_bar_color">Sign Up</h1>
+        <form action="/signup" method="POST">
+            <p>Username:</p><input type="text" name="username">
+            <p>Password:</p><input type="password" name="password">
+            <p>Role:</p>
+            <input type="radio" id="user" name="role" value="0">
+            <label for="user">User</label>
+            <input type="radio" id="admin" name="role" value="1">
+            <label for="admin">Admin</label><br>
+            <input type="submit" value="Sign Up">
+        </form>
+        <button><a href="/">Back</a></button>
+    </body>
+</html>

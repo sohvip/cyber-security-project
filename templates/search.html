@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+{% if posts == [] %}
+<h2>no results</h2>
+<button><a href="/">Back</a></button>
+{% else %}
+<button><a href="/">Back</a></button>
+{% for post in posts %}
+<div class="search_border">
+    <h2>{{ post[1] }}</h2>
+    <p>{{ post[2] }}</p>
+    <p>{{ post[5] }} {{ post[3].strftime('%d.%m.%Y %H:%M:%S') }}</p>
+</div>
+<button><a href="/category/{{ post[4] }}/{{ post[0] }}">See full post</a></button>
+{% endfor %}
+{% endif %}
+{% endblock %}
