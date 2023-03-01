@@ -34,15 +34,19 @@ def index():
 def account():
     if request.method == 'GET':
         username = get_username()
-        html = f'<p>Hello {username}!</p><a href="/">Back</a>'
+        id = get_user_id()
+        html = f'<p>Hello {username}!</p><a href="/accountinfo/{id}">Account info</a><br><a href="/">Back</a>'
         return html
 
 # A3:2017-Sensitive Data Exposure
+# A7:2017-XSS
 @app.route('/accountinfo/<int:id>', methods=['get'])
 def accountinfo(id):
     if request.method == 'GET':
+        # if id != get_user_id():
+        #     abort(403)
         password = get_password(id)
-        html = f'<p>Username: {password[0]} Password: {password[1]}</p><a href="/">Back</a>'
+        html = f'<p>Username: {password[0]}<br>Password: {password[1]}</p><a href="/">Back</a>'
         return html
 
 @app.route('/search', methods=['get', 'post'])
